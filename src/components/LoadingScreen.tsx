@@ -37,7 +37,6 @@ export default function LoadingScreen() {
             }
         }
     }, [progress])
-
     return (
         <AnimatePresence mode="wait">
             {isLoading && (
