@@ -1,0 +1,32 @@
+[
+    {
+        "id": "1",
+        "title": "Solutions",
+        "url": "#",
+        "icon": "solutions"
+    },
+    {
+        "id": "2",
+        "title": "Plans",
+        "url": "#",
+        "icon": "plans"
+    },
+    {
+        "id": "3",
+        "title": "Resources",
+        "url": "#",
+        "icon": "resources"
+    },
+    {
+        "id": "4",
+        "title": "For Businesses",
+        "url": "#",
+        "icon": "business"
+    },
+    {
+        "id": "5",
+        "title": "What's new",
+        "url": "#",
+        "icon": "new"
+    }
+]
