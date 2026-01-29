@@ -11,6 +11,7 @@ import FoundingCustomer from "./components/FoundingCustomer";
 import NotIncluded from "./components/NotIncluded";
 import PricingFAQ from "./components/PricingFAQ";
 import { Metadata } from "next";
+import SparkleNavbar from "@/components/lightswind/sparkle-navbar";
 
 export const metadata: Metadata = {
     robots: {
@@ -25,7 +26,7 @@ export default function PricingPage() {
     return (
         <div className="min-h-screen bg-background text-foreground dark">
             <Header />
-
+            <SparkleNavbar items={['home', 'pricing', 'about', 'contact']} />
             <main>
                 <PricingHero />
 

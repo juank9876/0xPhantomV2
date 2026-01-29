@@ -3,6 +3,7 @@ import FadeInView from "@/components/FadeInView";
 import { WavyBackground } from "./ui/wavy-background";
 import { SvgIcon } from "@/components/ui/svg-icon";
 import { TextReveal } from "./ui/text-reveal";
+import { HyperText } from "./ui/hyper-text";
 
 export default function WordPressRisk() {
     return (
@@ -26,8 +27,7 @@ export default function WordPressRisk() {
                 <FadeInView>
                     <div className="mb-5 sm:mb-6 md:mb-8 lg:mb-10 max-w-7xl mx-auto ">
                         <h5 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-white  mb-4 sm:mb-5 md:mb-6 leading-tight">
-                            <span className="font-thin">The real risk:</span>
-                            <br />
+                            <HyperText startOnView className="font-thin">The real risk:</HyperText>
                             <span className="">WordPress exposes your entire portfolio to <br />mass penalties</span>
                         </h5>
                         <p className="text-gray-400 text-sm sm:text-base md:text-lg w-full leading-relaxed">
@@ -155,7 +155,7 @@ export default function WordPressRisk() {
                             waveWidth={50}
                             className=""
                         >
-                            <div className="rounded-lg bg-black/80 backdrop-blur-xl border border-gray-700  w-full">
+                            <div className="rounded-lg bg-black/60 backdrop-blur-xl   w-full">
                                 <TextReveal
                                     className="font-medium text-white text-center"
                                     lineHeight="leading-loose"

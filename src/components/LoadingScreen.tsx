@@ -3,10 +3,17 @@
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "motion/react"
 import { Progress, ProgressTrack, ProgressLabel, ProgressValue } from "@/components/animate-ui/components/base/progress"
+import { HyperText } from "./ui/hyper-text"
 
 export default function LoadingScreen() {
     const [isLoading, setIsLoading] = useState(true)
     const [progress, setProgress] = useState(0)
+
+    const getLoadingText = (progress: number): string => {
+        if (progress <= 33) return "STARTING 0xPhantom..."
+        if (progress <= 66) return "LOADING RESOURCES..."
+        return "FINALIZING SETUP..."
+    }
 
     useEffect(() => {
         // Animar el progreso de 0 a 100
@@ -18,7 +25,7 @@ export default function LoadingScreen() {
                 }
                 return prev + 5
             })
-        }, 30) // 3000ms total (1% cada 30ms = 100 pasos)
+        }, 150) // 3000ms total (1% cada 30ms = 100 pasos)
 
         return () => {
             clearInterval(progressInterval)
@@ -30,7 +37,7 @@ export default function LoadingScreen() {
         if (progress >= 100) {
             const hideTimer = setTimeout(() => {
                 setIsLoading(false)
-            }, 800) // Pausa después de completar
+            }, 1000) // Pausa después de completar
 
             return () => {
                 clearTimeout(hideTimer)
@@ -54,10 +61,12 @@ export default function LoadingScreen() {
                     data-loading-screen
                 >
                     <motion.img
+                        initial={{ opacity: 1, y: 0 }}
+                        animate={{ opacity: 1, y: -100 }}
                         src="/logo.png"
                         alt="Logo"
                         layoutId="logo"
-                        className="w-60 pointer-events-none"
+                        className="w-96 pointer-events-none"
                         transition={{
                             duration: 0.9,
                             ease: [0.22, 1, 0.36, 1]
@@ -69,15 +78,21 @@ export default function LoadingScreen() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.3, duration: 0.5 }}
                     >
-                        <Progress value={progress} className="w-64 sm:w-80 space-y-2">
+                        <Progress value={progress} className=" w-[1000px] space-y-2">
                             <div className="flex items-center justify-between gap-1">
-                                <ProgressLabel className="text-white">Loading 0xPhantom</ProgressLabel>
+                                <ProgressLabel className="text-white">
+                                    <HyperText key={getLoadingText(progress)}>
+                                        {getLoadingText(progress)}
+                                    </HyperText>
+                                </ProgressLabel>
                                 <span className="text-sm text-white">
                                     <ProgressValue /> %
                                 </span>
                             </div>
                             <ProgressTrack className="h-1 bg-white/10 [&>div]:bg-white" />
                         </Progress>
+
+
                     </motion.div>
                 </motion.div>
             )}

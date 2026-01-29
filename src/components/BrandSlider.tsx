@@ -1,6 +1,10 @@
 "use client";
 
 import Image from "next/image";
+import {
+    ScrollVelocityContainer,
+    ScrollVelocityRow,
+} from "@/components/ui/scroll-based-velocity"
 
 export default function BrandSlider() {
     const brands = [
@@ -20,12 +24,16 @@ export default function BrandSlider() {
             <div className="flex flex-row items-center gap-3 md:gap-4 lg:gap-5 w-full">
 
                 <div className="relative flex overflow-hidden group w-full">
-                    <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-24 md:w-32 bg-gradient-to-r from-black to-transparent z-10 pointer-events-none" />
-                    <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-24 md:w-32 bg-gradient-to-l from-black to-transparent z-10 pointer-events-none" />
-                    <div className="flex items-center gap-2 sm:gap-3 animate-scroll group-hover:pause-animation">
-                        {duplicatedBrands.map((brand, index) => (
-                            <BrandItem key={index} brand={brand} />
-                        ))}
+                    <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-24 md:w-32 bg-linear-to-r from-black to-transparent z-10 pointer-events-none" />
+                    <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-24 md:w-32 bg-linear-to-l from-black to-transparent z-10 pointer-events-none" />
+                    <div className="flex items-center gap-2 sm:gap-3  ">
+                        <ScrollVelocityContainer className="text-4xl font-bold md:text-7xl">
+                            <ScrollVelocityRow baseVelocity={2} direction={1}>
+                                {duplicatedBrands.map((brand, index) => (
+                                    <BrandItem key={index} brand={brand} />
+                                ))}
+                            </ScrollVelocityRow>
+                        </ScrollVelocityContainer>
                     </div>
                 </div>
 
@@ -36,13 +44,13 @@ export default function BrandSlider() {
 
 function BrandItem({ brand }: { brand: { name: string; logo: string } }) {
     return (
-        <div className="flex items-center justify-center mx-4 sm:mx-6 md:mx-8 flex-shrink-0">
+        <div className="flex items-center justify-center mx-4 sm:mx-6 md:mx-8 shrink-0">
             <Image
                 src={brand.logo}
                 alt={brand.name}
-                width={240}
-                height={90}
-                className="object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300 w-24 h-12 sm:w-20 sm:h-10 md:w-24 md:h-12 lg:w-28 lg:h-14 xl:w-[120px] xl:h-[60px]"
+                width={350}
+                height={150}
+                className="object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300 w-24 h-12 sm:w-20 sm:h-10 md:w-24 md:h-12 lg:w-36 lg:h-16"
             />
         </div>
     );

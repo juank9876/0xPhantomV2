@@ -5,6 +5,7 @@ import Link from "next/link";
 import { links } from "@/data/links";
 import LightRays from "./LightRays";
 import { RainbowButton } from "./ui/rainbow-button";
+import { HyperText } from "./ui/hyper-text";
 
 export default function FinalCTA({ title, description }: { title?: string, description?: string }) {
   return (
@@ -53,9 +54,13 @@ export default function FinalCTA({ title, description }: { title?: string, descr
               </h2>
             )}
             {!title && (
-              <h2 className=" text-2xl sm:text-5xl lg:text-5xl font-bold text-white mb-3 leading-tight text-center">
-                Start with one pilot site.<br /> See the invisibility advantage.
-              </h2>
+              <>
+                <h2 className=" text-2xl sm:text-5xl lg:text-5xl font-bold text-white leading-tight text-center">
+                  Start with one pilot site.
+
+                </h2>
+                <HyperText defaultStyles={false} startOnView className="font-thin pb-8">See the invisibility advantage.</HyperText>
+              </>
             )}
           </FadeInView>
 

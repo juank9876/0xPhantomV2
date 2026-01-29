@@ -5,6 +5,7 @@ import { useState } from "react";
 import FadeInView from "@/components/FadeInView";
 import { SvgIcon } from "./ui/svg-icon";
 import { motion, AnimatePresence } from "motion/react";
+import { HyperText } from "./ui/hyper-text";
 
 interface FAQItem {
     question: string;
@@ -56,7 +57,7 @@ export default function FAQ({ title = "Common questions", subtitle = "before you
     };
 
     return (
-        <section className="relative bg-black pt-20 px-4 md:px-6 overflow-hidden pb-20">
+        <section className="relative bg-black pt-20 px-4 md:px-6 overflow-hidden py-40">
             <div className="absolute top-100 right-20 h-0 pointer-events-none">
                 <SvgIcon
                     src="/bg-icons/icon_dice.svg"
@@ -70,10 +71,8 @@ export default function FAQ({ title = "Common questions", subtitle = "before you
                         <h4 className="text-3xl lg:text-5xl font-bold text-white mb-4 leading-tight">
                             <span className="font-bold">{title}</span>
                             {subtitle && (
-                                <>
-                                    <br />
-                                    <span className="font-thin">{subtitle}</span>
-                                </>
+                                <HyperText defaultStyles={false} className="font-thin">{subtitle}</HyperText>
+
                             )}
                         </h4>
                     </div>

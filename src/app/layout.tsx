@@ -7,8 +7,10 @@ import { Analytics } from "@vercel/analytics/next";
 import { Suspense } from "react";
 import "./globals.css";
 import LayoutWrapper from "@/components/LayoutWrapper";
-import { AnimatePresence } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import LoadingScreen from "@/components/LoadingScreen";
+import { Pointer } from "@/components/ui/pointer";
+import { PointerLayout } from "./pointer";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -36,6 +38,8 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning className="overflow-x-hidden bg-black">
       <body className={`overflow-x-hidden font-sans bg-black ${poppins.variable} ${GeistSans.variable} ${GeistMono.variable}`} suppressHydrationWarning>
         <LoadingScreen />
+
+
         {children}
         <Analytics />
 

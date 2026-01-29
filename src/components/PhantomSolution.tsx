@@ -5,10 +5,16 @@ import CardFlip from "./kokonutui/card-flip";
 import Beams from "./Beams";
 import { GridScan } from "./GridScan";
 import { TextReveal } from "./ui/text-reveal";
+import { NeonGradientCard } from "./ui/neon-gradient-card";
+import { HexagonBackground } from "./animate-ui/components/backgrounds/hexagon";
+import { GridPattern } from "./ui/grid-pattern"
+import { AnimatedGridPattern } from "./ui/animated-grid-pattern";
+import { RetroGrid } from "./ui/retro-grid";
+import { HyperText } from "./ui/hyper-text";
 
 export default function PhantomSolution() {
     return (
-        <section className="relative bg-black pt-12 sm:pt-16 md:pt-20 px-4 sm:px-6 md:px-8">
+        <section className="relative bg-black py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-8">
 
 
             <div className="max-w-7xl mx-auto relative">
@@ -17,7 +23,7 @@ export default function PhantomSolution() {
                         <h5 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-4 sm:mb-5 md:mb-6 leading-tight">
                             <span className="">Why Google can't detect Phantom sites</span>
                             <br />
-                            <span className="font-thin">and why that protects your entire portfolio.</span>
+                            <HyperText startOnView className="font-thin">and why that protects your entire portfolio.</HyperText>
                         </h5>
                         <p className="text-sm sm:text-base md:text-md text-gray-400 w-full leading-relaxed mb-3 sm:mb-4">
                             Here's the problem with WordPress: Every site leaves the same technical signature. Google's crawlers see "wp-content/themes/", "wp-includes/",
@@ -102,18 +108,39 @@ export default function PhantomSolution() {
                     If Google decides to downrank "WordPress affiliate networks" (like they did with Wix in the past), your whole portfolio gets hit.
                 </TextReveal>
                 <FadeInView delay={0.2}>
-                    <div className="rounded-xl md:rounded-2xl bg-gradient-to-t from-[#992953]/20 via-[#411640]/50 to-[#000000]/20 border p-6 sm:p-8 md:p-10 lg:p-12 mt-5 sm:mt-6 md:mt-8 transition-all duration-300 hover:border-[#992953] hover:shadow-lg hover:shadow-[#992953]/30 hover:from-[#992953]/30 hover:via-[#411640]/60">
-                        <h3 className="text-5xl text-white mb-3 sm:mb-4 font-thin">
-                            Phantom's solution:
-                        </h3>
-                        <p className="text-sm sm:text-base md:text-md text-gray-200/60 leading-relaxed">
-                            Phantom gives each site a <strong>hardcoded Next.js frontend</strong>. <br /><br />
-                            No shared CMS folders. <br /><br />
-                            No plugin fingerprints. <br /><br />
-                            No detectable pattern. <br /><br />
-                            Even if you migrate 500 sites, Google sees 500 independent, custom-built websites: not a mass-produced affiliate network.
+                    <NeonGradientCard className="mx-auto relative items-center justify-center text-center">
+                        <RetroGrid className="[mask-image:radial-gradient(500px_circle_at_center,white,transparent)]" />
+                        <HyperText startOnView className=" pt-5 pointer-events-none z-10 h-full bg-gradient-to-br from-[#ff639a] from-35% to-[#983eff] bg-clip-text text-center text-3xl leading-none font-bold tracking-tighter text-balance whitespace-pre-wrap text-transparent md:text-5xl xl:text-6xl dark:drop-shadow-[0_5px_5px_rgba(0,0,0,0.8)]">
+                            OX-Phantom's solution
+                        </HyperText>
+                        <div className="mt-3 space-y-4 pb-10">
+                            <p className="text-base sm:text-lg md:text-xl text-white/90 font-medium">
+                                Phantom gives each site a
+                            </p>
+                            <HyperText startOnView className="text-[#ff639a]">hardcoded Next.js frontend</HyperText>
+                            <p>.</p>
+
+                            <ul className="mx-auto flex justify-center flex-col items-center space-y-3 text-start max-w-2xl">
+                                <li className="flex items-center justify-start gap-3 text-sm sm:text-base md:text-lg text-gray-200/80">
+                                    <span className="text-[#983eff] mt-1 shrink-0">✓</span>
+                                    <span>No shared CMS folders.</span>
+                                </li>
+                                <li className="flex items-center justify-start gap-3 text-sm sm:text-base md:text-lg text-gray-200/80">
+                                    <span className="text-[#983eff] mt-1 shrink-0">✓</span>
+                                    <span>No plugin fingerprints.</span>
+                                </li>
+                                <li className="flex items-center justify-start gap-3 text-sm sm:text-base md:text-lg text-gray-200/80">
+                                    <span className="text-[#983eff] mt-1 shrink-0">✓</span>
+                                    <span>No detectable pattern.</span>
+                                </li>
+                            </ul>
+
+                        </div>
+                        <p className="text-sm sm:text-base md:text-lg text-gray-300/70 leading-relaxed pt-4 border-t border-gray-700/30">
+                            Even if you migrate <strong className="text-white">500 sites</strong>, Google sees 500 independent, custom-built websites: <strong className="text-[#ff639a]">not a mass-produced affiliate network</strong>.
                         </p>
-                    </div>
+
+                    </NeonGradientCard>
                 </FadeInView>
             </div>
         </section>

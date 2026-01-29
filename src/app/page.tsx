@@ -8,11 +8,7 @@ import LiveSites from "@/components/LiveSites";
 import FAQ from "@/components/FAQ";
 import FinalCTA from "@/components/FinalCTA";
 import Footer from "@/components/Footer";
-import VideoHero from "@/components/VideoHero";
-import AffiliateShowcase from "@/components/AffiliateShowcase";
-import CMSShowcase from "@/components/CMSShowcase";
 import { Metadata } from "next";
-import { BaseProgressDemo } from "@/components/BaseProgressDemo";
 
 export const metadata: Metadata = {
   robots: {

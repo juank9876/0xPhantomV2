@@ -1,15 +1,15 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import { PlaceholdersAndVanishInput } from "./ui/placeholders-and-vanish-input";
 import { TextAnimate } from "./ui/text-animate";
 import { AnimatedSpan, Terminal, TypingAnimation } from "./ui/terminal";
 import { links } from "@/data/links";
 import LiquidEther from "./LiquidEther";
 import DarkVeil from "./DarkVeil";
-import { motion } from "motion/react";
 import FadeInView from "./FadeInView";
 import { RainbowButton } from "./ui/rainbow-button";
+import { Safari } from "./ui/safari";
+import { HyperText } from "./ui/hyper-text";
 
 export default function Hero() {
 
@@ -88,92 +88,61 @@ export default function Hero() {
         </div>
 
         <FadeInView delay={5.5}>
-          <div className="rounded-lg sm:rounded-xl md:rounded-2xl relative overflow-hidden w-full  mx-auto">
-            <video
-              src="/hero-video-pc.mp4"
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="w-full opacity-85 h-[95vh] object-fill rounded-lg sm:rounded-xl md:rounded-2xl"
-            />
-          </div>
+
+          <Safari url="app.xphantom.io" videoSrc="/hero-video-pc.webm" objectFit="cover" />
+
         </FadeInView>
       </div>
 
-      <div className="hidden xl:block absolute bottom-25 left-5 w-[20vw] xl:w-[14vw] h-auto max-h-[45vh] z-30 opacity-90">
-        <Terminal startOnView sequence>
-          <TypingAnimation>&gt; init 0xPhantom CMS</TypingAnimation>
-
-          <AnimatedSpan delay={2} className="text-green-500">
-            ✔ Creating server instance.
+      <div className="hidden xl:block absolute bottom-0 left-0  overflow-x-hidden z-5 opacity-90 hover:opacity-50 transition-opacity duration-500">
+        <Terminal startOnView sequence className="bg-black/40 backdrop-blur-sm border-white/10">
+          <TypingAnimation className="text-sm font-mono">&gt; init 0xPhantom CMS</TypingAnimation>
+          <AnimatedSpan delay={2000} >
+            <HyperText defaultStyles={false} delay={2000} startOnView className="text-sm font-mono text-green-500">
+              ✔ Creating server instance.
+            </HyperText>
           </AnimatedSpan>
-          <AnimatedSpan delay={2} className="text-green-500">
+          <HyperText defaultStyles={false} delay={2500} startOnView className="text-sm font-mono text-green-500">
             ✔ Allocating resources.
-          </AnimatedSpan>
-          <AnimatedSpan delay={2} className="text-green-500">
+          </HyperText>
+          <HyperText defaultStyles={false} delay={3000} startOnView className="text-sm font-mono text-green-500">
             ✔ Server successfully created.
-          </AnimatedSpan>
-
-          <AnimatedSpan delay={2} className="text-green-500">
+          </HyperText>
+          <HyperText defaultStyles={false} delay={3500} startOnView className="text-sm font-mono text-green-500">
             ✔ Validated DNS records.
-          </AnimatedSpan>
+          </HyperText>
 
-          <AnimatedSpan delay={2} className="text-green-500">
+          <HyperText defaultStyles={false} delay={4000} startOnView className="text-green-500 text-sm">
             ✔ Configuring environment variables.
-          </AnimatedSpan>
-          <AnimatedSpan delay={2} className="text-green-500">
+          </HyperText>
+          <HyperText defaultStyles={false} delay={4500} startOnView className="text-green-500 text-sm">
             ✔ Connecting to database.
-          </AnimatedSpan>
+          </HyperText>
 
-          <AnimatedSpan delay={2} className="text-green-500">
+          <HyperText defaultStyles={false} delay={5000} startOnView className="text-green-500 text-sm">
             ✔ Running CMS services.
-          </AnimatedSpan>
-          <AnimatedSpan delay={2} className="text-green-500">
+          </HyperText>
+          <HyperText defaultStyles={false} delay={5500} startOnView className="text-green-500 text-sm">
             ✔ Content engine loaded.
-          </AnimatedSpan>
+          </HyperText>
 
-          <AnimatedSpan delay={2} className="text-green-500">
+          <HyperText defaultStyles={false} delay={6000} startOnView className="text-green-500 text-sm">
             ✔ Compiling templates.
-          </AnimatedSpan>
+          </HyperText>
 
-          <AnimatedSpan delay={2} className="text-blue-500">
-            <span>ℹ Active template:</span>
-            <span className="pl-2">- phantom-pro</span>
-          </AnimatedSpan>
+          <HyperText defaultStyles={false} delay={6500} startOnView className="text-blue-500 text-sm">
+            ℹ Active template: phantom-pro
+          </HyperText>
 
-          <TypingAnimation className="text-muted-foreground">
+          <HyperText defaultStyles={false} delay={7000} startOnView className="text-muted-foreground text-sm">
             CMS is live and ready.
-          </TypingAnimation>
-          <TypingAnimation className="text-muted-foreground">
+          </HyperText>
+          <HyperText defaultStyles={false} delay={7500} startOnView className="text-muted-foreground text-sm">
             Start creating and publishing content.
-          </TypingAnimation>
+          </HyperText>
         </Terminal>
       </div>
 
-      {/*
-      <div className="hidden lg:block absolute right-20 bottom-100 w-[30vw] h-[50vh] z-30">
-        <Image
-          src="/banner/banner-api-config.png"
-          alt="0x-Phantom Preview"
-          fill
-          className="object-contain rounded-2xl"
-          priority
-        />
-      </div>
-      */}
-      {/*
-      <div className="hidden lg:block absolute left-20 -bottom-30 w-[30vw] h-[50vh] z-30">
-        <Image
-          src="/banner/banner-content-str.png"
-          alt="0x-Phantom Preview"
-          width={1600}
-          height={1200}
-          className="object-contain rounded-2xl opacity-20"
-          priority
-        />
-      </div>
-      */}
       <div className="absolute bottom-0 left-0 right-0 h-[80px] sm:h-[100px] md:h-[120px] w-full bg-linear-to-b from-transparent via-black/40 to-black z-20 pointer-events-none">
 
       </div>
