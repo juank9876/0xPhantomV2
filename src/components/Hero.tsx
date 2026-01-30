@@ -1,6 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import { useState, useEffect } from "react";
 import { PlaceholdersAndVanishInput } from "./ui/placeholders-and-vanish-input";
 import { TextAnimate } from "./ui/text-animate";
 import { AnimatedSpan, Terminal, TypingAnimation } from "./ui/terminal";
@@ -21,9 +22,25 @@ const DarkVeil = dynamic(() => import("./DarkVeil"), {
 });
 
 export default function Hero() {
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(min-width: 1024px)');
+    setIsDesktop(mediaQuery.matches);
+
+    const handleChange = (e: MediaQueryListEvent) => {
+      setIsDesktop(e.matches);
+    };
+
+    mediaQuery.addEventListener('change', handleChange);
+    return () => mediaQuery.removeEventListener('change', handleChange);
+  }, []);
 
   return (
     <section className="relative flex justify-center items-center h-full lg:min-h-screen overflow-hidden bg-black">
+      {
+        /**/
+      }
       <div className="absolute inset-0 w-full h-full z-0">
         <DarkVeil
           resolutionScale={1.5}
@@ -36,25 +53,27 @@ export default function Hero() {
         />
       </div>
 
-      <div className="absolute inset-0 w-full h-full z-5 pointer-events-none">
-        <LiquidEther
-          colors={['#5227FF', '#FF9FFC', '#B19EEF']}
-          mouseForce={60}
-          cursorSize={150}
-          isViscous
-          viscous={60}
-          iterationsViscous={10}
-          iterationsPoisson={10}
-          resolution={0.5}
-          isBounce={false}
-          autoDemo
-          autoSpeed={0.5}
-          autoIntensity={2.2}
-          takeoverDuration={0.25}
-          autoResumeDelay={3000}
-          autoRampDuration={0.6}
-        />
-      </div>
+      {isDesktop && (
+        <div className="absolute inset-0 w-full h-full z-5 pointer-events-none">
+          <LiquidEther
+            colors={['#5227FF', '#FF9FFC', '#B19EEF']}
+            mouseForce={60}
+            cursorSize={150}
+            isViscous
+            viscous={60}
+            iterationsViscous={10}
+            iterationsPoisson={10}
+            resolution={0.5}
+            isBounce={false}
+            autoDemo
+            autoSpeed={0.5}
+            autoIntensity={2.2}
+            takeoverDuration={0.25}
+            autoResumeDelay={3000}
+            autoRampDuration={0.6}
+          />
+        </div>
+      )}
 
       <div className="relative z-10 flex flex-col justify-center items-center w-full  mx-auto px-4 sm:px-6 md:px-8  pt-30 lg:pt-32 xl:pt-48">
         <p className="text-[10px] sm:text-xs md:text-sm lg:text-base xl:text-lg text-white text-center font-medium drop-shadow-[0_0_15px_rgba(244,114,182,0.5)] hover:drop-shadow-[0_0_25px_rgba(168,85,247,0.8)] transition-all duration-300 animate-fade-in mb-2 sm:mb-3 md:mb-4 max-w-[90%] sm:max-w-full">

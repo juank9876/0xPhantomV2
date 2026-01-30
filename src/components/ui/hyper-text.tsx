@@ -101,7 +101,7 @@ export function HyperText({
     const startTime = performance.now()
     let animationFrameId: number
     let lastUpdateTime = startTime
-    const updateInterval = 30 // Update every 50ms instead of every frame
+    const updateInterval = 60 // Update every 50ms instead of every frame
 
     const animate = (currentTime: number) => {
       const elapsed = currentTime - startTime
@@ -151,7 +151,7 @@ export function HyperText({
   if (defaultStyles) return (
     <MotionComponent
       ref={elementRef}
-      className={cn("overflow-hidden py-2 text-lg lg:text-4xl py-0 font-bold", className)}
+      className={cn("overflow-hidden py-2 text-lg lg:text-4xl  font-bold", className)}
       onMouseEnter={handleAnimationTrigger}
       style={{ opacity: isAnimating || hasAnimated ? 1 : 0, transition: 'opacity 0.3s ease-in-out' }}
       {...props}

@@ -21,9 +21,9 @@ export default function LoadingScreen() {
                     clearInterval(progressInterval)
                     return 100
                 }
-                return prev + 10
+                return prev + 20
             })
-        }, 150) // 500ms total (10% cada 50ms = 10 pasos)
+        }, 300) // 500ms total (10% cada 50ms = 10 pasos)
 
         return () => {
             clearInterval(progressInterval)
