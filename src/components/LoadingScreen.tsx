@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "motion/react"
-import { HyperText } from "./ui/hyper-text"
 
 export default function LoadingScreen() {
     const [isLoading, setIsLoading] = useState(true)
@@ -15,16 +14,16 @@ export default function LoadingScreen() {
     }
 
     useEffect(() => {
-        // Animar el progreso de 0 a 100
+        // Animar el progreso de 0 a 100 más rápido
         const progressInterval = setInterval(() => {
             setProgress((prev) => {
                 if (prev >= 100) {
                     clearInterval(progressInterval)
                     return 100
                 }
-                return prev + 5
+                return prev + 10
             })
-        }, 150) // 3000ms total (1% cada 30ms = 100 pasos)
+        }, 150) // 500ms total (10% cada 50ms = 10 pasos)
 
         return () => {
             clearInterval(progressInterval)
@@ -36,7 +35,7 @@ export default function LoadingScreen() {
         if (progress >= 100) {
             const hideTimer = setTimeout(() => {
                 setIsLoading(false)
-            }, 1000) // Pausa después de completar
+            }, 300) // Pausa reducida después de completar
 
             return () => {
                 clearTimeout(hideTimer)
@@ -49,7 +48,7 @@ export default function LoadingScreen() {
                 <motion.div
                     initial={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    transition={{ duration: 0.5, delay: 0.5 }}
+                    transition={{ duration: 0.3, delay: 0.2 }}
                     className="fixed inset-0 z-[9999] bg-black flex flex-col items-center justify-center gap-4 sm:gap-6 md:gap-8 px-4 pointer-events-none"
                     onAnimationComplete={() => {
                         if (!isLoading) {
@@ -65,28 +64,37 @@ export default function LoadingScreen() {
                         src="/logo.png"
                         alt="Logo"
                         className="w-48 sm:w-64 md:w-80 lg:w-96 max-w-[90vw] pointer-events-none"
-                        transition={{ duration: 0.6, ease: "easeOut" }}
+                        transition={{ duration: 0.3, ease: "easeOut" }}
                     />
 
                     <div className="w-full max-w-[280px] sm:max-w-[400px] md:max-w-[600px] lg:max-w-[800px] xl:max-w-[1000px] space-y-2 sm:space-y-3">
                         <div className="flex items-center justify-between gap-2 sm:gap-3">
-                            <HyperText
+                            <motion.span
                                 key={getLoadingText(progress)}
-                                className="text-white text-xs sm:text-sm md:text-base font-medium py-0 flex-1 min-w-0"
-                                duration={400}
-                                startOnView={false}
-                                delay={0}
+                                initial={{ opacity: 0, y: -10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: 10 }}
+                                transition={{ duration: 0.2 }}
+                                className="text-white text-xs sm:text-sm md:text-base font-medium tracking-wide flex-1 min-w-0"
                             >
                                 {getLoadingText(progress)}
-                            </HyperText>
-                            <span className="text-xs sm:text-sm md:text-base text-white whitespace-nowrap">
+                            </motion.span>
+                            <motion.span
+                                className="text-xs sm:text-sm md:text-base text-white font-mono whitespace-nowrap tabular-nums"
+                                key={progress}
+                                initial={{ scale: 1.2, opacity: 0.5 }}
+                                animate={{ scale: 1, opacity: 1 }}
+                                transition={{ duration: 0.15 }}
+                            >
                                 {progress}%
-                            </span>
+                            </motion.span>
                         </div>
-                        <div className="h-1 sm:h-1.5 bg-white/10 rounded-full overflow-hidden">
-                            <div
-                                className="h-full bg-white transition-all duration-300 ease-out"
-                                style={{ width: `${progress}%` }}
+                        <div className="h-1 sm:h-1.5 bg-white/10 rounded-full overflow-hidden backdrop-blur-sm">
+                            <motion.div
+                                className="h-full bg-linear-to-r from-purple-500 via-pink-500 to-purple-500 bg-size-[200%_100%] animate-gradient"
+                                initial={{ width: 0 }}
+                                animate={{ width: `${progress}%` }}
+                                transition={{ duration: 0.3, ease: "easeOut" }}
                             />
                         </div>
                     </div>

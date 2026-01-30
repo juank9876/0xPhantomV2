@@ -1,22 +1,62 @@
-import { ArrowBigRight, ArrowRight } from "lucide-react";
-import Image from "next/image";
+"use client";
+
+import { ArrowBigRight } from "lucide-react";
+import dynamic from "next/dynamic";
+import { memo, useMemo } from "react";
 import FadeInView from "@/components/FadeInView";
 import { SvgIcon } from "./ui/svg-icon";
-import { ChromaGrid } from "./ChromaGrid";
-import { TextReveal } from "./ui/text-reveal";
-import { HyperText } from "./ui/hyper-text";
-import CardSwap, { Card } from "./CardSwap";
-import { Safari } from "./ui/safari";
-import Carousel from "./Carousel";
 import { FiGlobe } from "react-icons/fi";
+
+const CardSwap = dynamic(() => import("./CardSwap").then(mod => ({ default: mod.default })), {
+    ssr: false,
+    loading: () => <div className="w-full h-[700px] bg-black/20 animate-pulse" />
+});
+
+const Card = dynamic(() => import("./CardSwap").then(mod => ({ default: mod.Card })), {
+    ssr: false
+});
+
+const Safari = dynamic(() => import("./ui/safari").then(mod => ({ default: mod.Safari })), {
+    ssr: false,
+    loading: () => <div className="w-full h-full bg-gray-900 animate-pulse rounded-lg" />
+});
+
+const Carousel = dynamic(() => import("./Carousel"), {
+    ssr: false,
+    loading: () => <div className="w-[320px] h-[450px] bg-black/20 animate-pulse rounded-lg" />
+});
 const achievements = [
     "Team with 8+ years managing casino/iGaming SEO at Interamplify",
     "30 production-ready templates specific to casino affiliates—enough variety to avoid \"same design\" detection across large portfolios",
     "Hosting infrastructure battle-tested with offshore locations and backup systems to prevent data loss",
     "Proven indexation advantage: Next.js sites in our tests got crawled and indexed faster than WordPress equivalents"
-];
+] as const;
 
-export default function LiveSites() {
+const carouselItems = [
+    {
+        title: "spinbonuscasino.com",
+        description: "Live casino affiliate site running on Phantom",
+        id: 1,
+        icon: <FiGlobe className="carousel-icon" />,
+        image: "/section-howphantommakes-2/img-1.png"
+    },
+    {
+        title: "tipstersguide.com",
+        description: "Sports betting guide powered by Next.js",
+        id: 2,
+        icon: <FiGlobe className="carousel-icon" />,
+        image: "/section-howphantommakes-2/img-2.png"
+    },
+    {
+        title: "app.xphantom.io",
+        description: "Phantom CMS management platform",
+        id: 3,
+        icon: <FiGlobe className="carousel-icon" />,
+        image: "/section-howphantommakes-2/img-3.png"
+    }
+] as const;
+
+function LiveSites() {
     return (
         <section className="relative bg-black  px-4 md:px-6 py-12 sm:py-16 md:py-20">
             <SvgIcon
@@ -25,17 +65,17 @@ export default function LiveSites() {
                 alt=""
             />
 
-            <FadeInView className="max-w-7xl mx-auto relative">
-                <HyperText defaultStyles={false} className="text-2xl md:text-3xl lg:text-4xl font-thin text-white ">
+            <div className="max-w-7xl mx-auto relative">
+                <h2 className="text-2xl md:text-3xl lg:text-4xl font-thin text-white mb-2 opacity-0 animate-fade-in" style={{ animationDelay: '0.1s', animationFillMode: 'forwards' }}>
                     How Phantom makes
-                </HyperText>
-                <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 text-white leading-tight">
+                </h2>
+                <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 text-white leading-tight opacity-0 animate-fade-in" style={{ animationDelay: '0.2s', animationFillMode: 'forwards' }}>
                     Already running live casino affiliate sites with better SEO performance than WordPress.
                 </h3>
-                <p className="text-base md:text-lg text-gray-400 mb-4 leading-relaxed">
+                <p className="text-base md:text-lg text-gray-400 mb-4 leading-relaxed opacity-0 animate-fade-in" style={{ animationDelay: '0.3s', animationFillMode: 'forwards' }}>
                     Phantom isn't a concept or a beta. We're running live casino affiliate sites on this stack right now—and our own experiments show they index faster and rank better than equivalent WordPress sites.
                 </p>
-            </FadeInView>
+            </div>
             <div className="lg:flex hidden flex-col justify-start items-start " style={{ height: '700px', position: 'relative' }}>
                 <CardSwap
                     width={1000}
@@ -61,46 +101,22 @@ export default function LiveSites() {
             </div>
 
             <div className="lg:hidden flex justify-center items-center py-8 relative">
-
                 <Carousel
-                    items={[
-                        {
-                            title: "spinbonuscasino.com",
-                            description: "Live casino affiliate site running on Phantom",
-                            id: 1,
-                            icon: <FiGlobe className="carousel-icon" />,
-                            image: "/section-howphantommakes-2/img-1.png"
-                        },
-                        {
-                            title: "tipstersguide.com",
-                            description: "Sports betting guide powered by Next.js",
-                            id: 2,
-                            icon: <FiGlobe className="carousel-icon" />,
-                            image: "/section-howphantommakes-2/img-2.png"
-                        },
-                        {
-                            title: "app.xphantom.io",
-                            description: "Phantom CMS management platform",
-                            id: 3,
-                            icon: <FiGlobe className="carousel-icon" />,
-                            image: "/section-howphantommakes-2/img-3.png"
-                        }
-                    ] as any}
+                    items={carouselItems as any}
                     baseWidth={320}
                     autoplay={true}
                     autoplayDelay={3000}
                     pauseOnHover={true}
                     loop={true}
                 />
-
             </div>
 
-            <div className="flex flex-col gap-8 lg:gap-12 items-start w-full lg:w-1/3  lg:pt-80 lg:pb-20 pb-10 pt-10">
+            <div className="flex flex-col gap-8 lg:gap-12 items-start w-full lg:w-1/3 lg:pt-80 lg:pb-20 pb-10 pt-10">
                 <ul className="space-y-4">
                     {achievements.map((achievement, index) => (
-                        <li key={index} className="font-mono flex items-start gap-3 group cursor-pointer transition-all duration-300 hover:translate-x-2">
-                            <ArrowBigRight className="shrink-0 w-6 h-6 text-white mt-1 transition-colors duration-300 group-hover:text-pink-400" />
-                            <p className="text-lg  text-gray-100/90 leading-relaxed transition-colors duration-300 group-hover:text-white">
+                        <li key={index} className="font-mono flex items-start gap-3 group cursor-pointer transition-all duration-200 hover:translate-x-2">
+                            <ArrowBigRight className="shrink-0 w-6 h-6 text-white mt-1 transition-colors duration-200 group-hover:text-pink-400" />
+                            <p className="text-lg text-gray-100/90 leading-relaxed transition-colors duration-200 group-hover:text-white">
                                 {achievement}
                             </p>
                         </li>
@@ -110,4 +126,6 @@ export default function LiveSites() {
         </section>
     );
 }
+
+export default memo(LiveSites);
 
