@@ -71,7 +71,7 @@ const Word: FC<WordProps> = ({ children, progress, range }) => {
       <span className="absolute opacity-20">{children}</span>
       <motion.span
         style={{ opacity: opacity }}
-        className={"text-white"}
+        className={"text-white lg:text-7xl text-4xl"}
       >
         {children}
       </motion.span>

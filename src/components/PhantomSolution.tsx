@@ -103,7 +103,7 @@ export default function PhantomSolution() {
                 <TextReveal
                     className="font-medium text-white text-center"
                     lineHeight="leading-loose"
-                    fontSize="text-7xl"
+                    fontSize="lg:text-7xl text-4xl"
                 >
                     If Google decides to downrank "WordPress affiliate networks" (like they did with Wix in the past), your whole portfolio gets hit.
                 </TextReveal>

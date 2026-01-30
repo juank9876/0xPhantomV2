@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "motion/react"
-import { Progress, ProgressTrack, ProgressLabel, ProgressValue } from "@/components/animate-ui/components/base/progress"
 import { HyperText } from "./ui/hyper-text"
 
 export default function LoadingScreen() {
@@ -51,7 +50,7 @@ export default function LoadingScreen() {
                     initial={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.5, delay: 0.5 }}
-                    className="fixed inset-0 z-[9999] bg-black flex flex-col items-center justify-center gap-8 pointer-events-none"
+                    className="fixed inset-0 z-[9999] bg-black flex flex-col items-center justify-center gap-4 sm:gap-6 md:gap-8 px-4 pointer-events-none"
                     onAnimationComplete={() => {
                         if (!isLoading) {
                             const element = document.querySelector('[data-loading-screen]')
@@ -61,39 +60,36 @@ export default function LoadingScreen() {
                     data-loading-screen
                 >
                     <motion.img
-                        initial={{ opacity: 1, y: 0 }}
-                        animate={{ opacity: 1, y: -100 }}
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
                         src="/logo.png"
                         alt="Logo"
-                        layoutId="logo"
-                        className="w-96 pointer-events-none"
-                        transition={{
-                            duration: 0.9,
-                            ease: [0.22, 1, 0.36, 1]
-                        }}
+                        className="w-48 sm:w-64 md:w-80 lg:w-96 max-w-[90vw] pointer-events-none"
+                        transition={{ duration: 0.6, ease: "easeOut" }}
                     />
 
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.3, duration: 0.5 }}
-                    >
-                        <Progress value={progress} className=" w-[1000px] space-y-2">
-                            <div className="flex items-center justify-between gap-1">
-                                <ProgressLabel className="text-white">
-                                    <HyperText key={getLoadingText(progress)}>
-                                        {getLoadingText(progress)}
-                                    </HyperText>
-                                </ProgressLabel>
-                                <span className="text-sm text-white">
-                                    <ProgressValue /> %
-                                </span>
-                            </div>
-                            <ProgressTrack className="h-1 bg-white/10 [&>div]:bg-white" />
-                        </Progress>
-
-
-                    </motion.div>
+                    <div className="w-full max-w-[280px] sm:max-w-[400px] md:max-w-[600px] lg:max-w-[800px] xl:max-w-[1000px] space-y-2 sm:space-y-3">
+                        <div className="flex items-center justify-between gap-2 sm:gap-3">
+                            <HyperText
+                                key={getLoadingText(progress)}
+                                className="text-white text-xs sm:text-sm md:text-base font-medium py-0 flex-1 min-w-0"
+                                duration={400}
+                                startOnView={false}
+                                delay={0}
+                            >
+                                {getLoadingText(progress)}
+                            </HyperText>
+                            <span className="text-xs sm:text-sm md:text-base text-white whitespace-nowrap">
+                                {progress}%
+                            </span>
+                        </div>
+                        <div className="h-1 sm:h-1.5 bg-white/10 rounded-full overflow-hidden">
+                            <div
+                                className="h-full bg-white transition-all duration-300 ease-out"
+                                style={{ width: `${progress}%` }}
+                            />
+                        </div>
+                    </div>
                 </motion.div>
             )}
         </AnimatePresence>

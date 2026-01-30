@@ -27,8 +27,8 @@ export default function WordPressRisk() {
                 <FadeInView>
                     <div className="mb-5 sm:mb-6 md:mb-8 lg:mb-10 max-w-7xl mx-auto ">
                         <h5 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-white  mb-4 sm:mb-5 md:mb-6 leading-tight">
-                            <HyperText startOnView className="font-thin">The real risk:</HyperText>
-                            <span className="">WordPress exposes your entire portfolio to <br />mass penalties</span>
+                            <HyperText startOnView className="font-thin text-lg lg:text-4xl pb-0">The real risk:</HyperText>
+                            <span className="">WordPress exposes your entire portfolio to mass penalties</span>
                         </h5>
                         <p className="text-gray-400 text-sm sm:text-base md:text-lg w-full leading-relaxed">
                             You've seen it happen. One Google update and affiliate networks running hundreds of sites on the same CMS get hit overnight—30%, 50%, 70%
@@ -53,10 +53,9 @@ export default function WordPressRisk() {
                     className="absolute top-70  lg:-left-40 w-32 sm:w-40 md:w-48 lg:w-96 h-32 sm:h-40 md:h-48 lg:h-96 scale-150 xl:scale-200 xl:opacity-20 lg:opacity-10 opacity-8 pointer-events-none -z-1 "
                     alt=""
                 />
-                <div className="relative max-w-7xl mx-auto overflow-hidden">
-
+                <div className="relative max-w-7xl mx-auto overflow-hidden pt-10">
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6 pb-4 px-0 place-items-center lg:place-items-stretch">
-                        <FadeInView delay={0.1} direction="up" className="w-[90%] sm:w-[80%] lg:w-full h-[450px] md:h-[500px]">
+                        <FadeInView delay={0.1} direction="up" className="w-full h-[450px] md:h-[500px]">
                             <div className="group cursor-pointer transition-all duration-300 rounded-xl md:rounded-2xl h-full w-full relative overflow-hidden border border-gray-800">
                                 <div className="absolute inset-0 w-full h-full group-hover:saturate-10 group-hover:contrast-150 transition-all duration-500">
                                     <Image
@@ -80,7 +79,7 @@ export default function WordPressRisk() {
                             </div>
                         </FadeInView>
 
-                        <FadeInView delay={0.2} direction="up" className="w-[90%] sm:w-[80%] lg:w-full h-[450px] md:h-[500px]">
+                        <FadeInView delay={0.2} direction="up" className="w-full h-[450px] md:h-[500px]">
                             <div className="group cursor-pointer transition-all duration-300  rounded-xl md:rounded-2xl h-full w-full relative overflow-hidden border border-gray-800">
                                 <div className="absolute inset-0 w-full h-full group-hover:saturate-10 group-hover:contrast-150 transition-all duration-500">
                                     <Image
@@ -159,7 +158,7 @@ export default function WordPressRisk() {
                                 <TextReveal
                                     className="font-medium text-white text-center"
                                     lineHeight="leading-loose"
-                                    fontSize="text-7xl"
+                                    fontSize="lg:text-7xl text-4xl"
                                 >
                                     "What if I wake up tomorrow and my entire portfolio is deindexed because Google flagged our CMS?"
                                 </TextReveal>
